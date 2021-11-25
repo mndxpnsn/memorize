@@ -23,9 +23,15 @@ class EmojiMemoryGame: ObservableObject {
     static let emojis_theme6 = ["🏅", "🥜", "🥠", "🎂"]
     static var init_set = false
     
-    static func add_theme(emojis: Array<String>, color: Color) {
-        emoji_themes.append(emojis)
-        theme_colors.append(color)
+    static func set_emoji_themes() {
+        add_theme2(emojis: emojis_theme1, num_pairs: numberOfPairsOfCardsGlb, color: Color.red)
+        add_theme2(emojis: emojis_theme2, num_pairs: numberOfPairsOfCardsGlb, color: Color.blue)
+        add_theme2(emojis: emojis_theme3, num_pairs: numberOfPairsOfCardsGlb, color: Color.green)
+        add_theme2(emojis: emojis_theme4, num_pairs: numberOfPairsOfCardsGlb, color: Color.orange)
+        add_theme2(emojis: emojis_theme5, num_pairs: numberOfPairsOfCardsGlb, color: Color.yellow)
+        add_theme2(emojis: emojis_theme6, num_pairs: numberOfPairsOfCardsGlb - 1, color: Color.brown)
+        let theme_count = emoji_themes.count
+        theme = Int.random(in: 0..<theme_count)
     }
     
     static func add_theme2(emojis: Array<String>, num_pairs: Int, color: Color) {
@@ -43,17 +49,6 @@ class EmojiMemoryGame: ObservableObject {
             theme_colors.append(color)
         }
         
-    }
-    
-    static func set_emoji_themes() {
-        add_theme2(emojis: emojis_theme1, num_pairs: numberOfPairsOfCardsGlb, color: Color.red)
-        add_theme2(emojis: emojis_theme2, num_pairs: numberOfPairsOfCardsGlb, color: Color.blue)
-        add_theme2(emojis: emojis_theme3, num_pairs: numberOfPairsOfCardsGlb, color: Color.green)
-        add_theme2(emojis: emojis_theme4, num_pairs: numberOfPairsOfCardsGlb, color: Color.orange)
-        add_theme2(emojis: emojis_theme5, num_pairs: numberOfPairsOfCardsGlb, color: Color.yellow)
-        add_theme2(emojis: emojis_theme6, num_pairs: numberOfPairsOfCardsGlb - 1, color: Color.brown)
-        let theme_count = emoji_themes.count
-        theme = Int.random(in: 0..<theme_count)
     }
     
     static func create_card_content (index: Int) -> String {
