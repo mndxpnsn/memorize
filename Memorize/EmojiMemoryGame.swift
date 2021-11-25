@@ -66,7 +66,7 @@ class EmojiMemoryGame: ObservableObject {
             EmojiMemoryGame.init_set = true
         }
         
-        return MemoryGame<String>(totNumPairsOfCards: numberOfPairsOfCardsGlb, numberOfPairsOfCards: emoji_themes[theme].count, createCardContent: create_card_content)
+        return MemoryGame<String>(numberOfPairsOfCards: emoji_themes[theme].count, createCardContent: create_card_content)
     }
     
     static func get_unique_random_array(size: Int, diff: Int) -> Array<Int> {

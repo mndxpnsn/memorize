@@ -14,7 +14,7 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
     private var numberOfCards: Int
     private var score: Int
     
-    init(totNumPairsOfCards: Int, numberOfPairsOfCards: Int, createCardContent: (Int) -> CardContent) {
+    init(numberOfPairsOfCards: Int, createCardContent: (Int) -> CardContent) {
         cards = Array<Card>()
         numberOfCards = 2 * numberOfPairsOfCards
         score = 0
