@@ -1,4 +1,4 @@
 .DS_Store
-*.xcodeproj/
+Memorize.xcodeproj/
 ./*sets/
 ./*tent/
