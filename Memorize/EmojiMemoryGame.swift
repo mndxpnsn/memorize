@@ -85,4 +85,8 @@ class EmojiMemoryGame: ObservableObject {
     func get_theme_color() -> Color {
         return theme_colors[theme]
     }
+    
+    func get_score() -> Int {
+        return model.get_score()
+    }
 }

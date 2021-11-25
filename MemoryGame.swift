@@ -6,17 +6,18 @@
 //
 
 import Foundation
-import SwiftUI
 
 struct MemoryGame<CardContent> where CardContent: Equatable {
     private(set) var cards: Array<Card>
     
     private var indexOfTheOneAndOnlyFaceUpCard: Int?
     private var numberOfCards: Int
+    private var score: Int
     
     init(numberOfPairsOfCards: Int, createCardContent: (Int) -> CardContent) {
         cards = Array<Card>()
         numberOfCards = 2 * numberOfPairsOfCards
+        score = 0
 
         let randArray = get_unique_random_array()
         
@@ -46,6 +47,17 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
                 if cards[chosenIndex].content == cards[potentialMatchIndex].content {
                     cards[chosenIndex].isMatched = true
                     cards[potentialMatchIndex].isMatched = true
+                    score = score + 2
+                }
+                else {
+                    if cards[chosenIndex].isSeen {
+                        score = score - 1
+                    }
+                    if cards[potentialMatchIndex].isSeen {
+                        score = score - 1
+                    }
+                    cards[chosenIndex].isSeen = true
+                    cards[potentialMatchIndex].isSeen = true
                 }
                 indexOfTheOneAndOnlyFaceUpCard = nil
             }
@@ -59,6 +71,10 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
         }
     }
     
+    func get_score() -> Int {
+        return score
+    }
+    
     func index(of card: Card) -> Int? {
         for index in 0..<cards.count {
             if cards[index].id == card.id {
@@ -70,12 +86,14 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
     
     mutating func new_game(num_cards: Int, cardContent: (Int) -> CardContent) {
 
+        score = 0
         let randArray = get_unique_random_array()
         
         for index in 0..<num_cards {
             let index_loc = randArray[index]
             cards[index].isFaceUp = false
             cards[index].isMatched = false
+            cards[index].isSeen = false
             cards[index].content = cardContent(Int(index_loc) / 2)
         }
         indexOfTheOneAndOnlyFaceUpCard = nil
@@ -84,6 +102,7 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
     struct Card: Identifiable {
         var isFaceUp: Bool = false
         var isMatched: Bool = false
+        var isSeen: Bool = false
         var content: CardContent
         var id: Int
     }

@@ -28,7 +28,13 @@ struct ContentView: View {
             .foregroundColor(color)
             .padding(.horizontal)
 
-            Button(action: myAction, label: myLabel)
+            HStack {
+                Button(action: myAction, label: myLabel)
+                Spacer()
+                game_score()
+            }
+            .padding(.horizontal)
+            .padding(.vertical)
         }
     }
     
@@ -36,6 +42,13 @@ struct ContentView: View {
         let theme = viewModel.get_theme() + 1
         let prefix = "Theme: "
         let suffix = String(theme)
+        return Text(prefix + suffix)
+    }
+    
+    func game_score() -> Text {
+        let score = viewModel.get_score()
+        let prefix = "Score: "
+        let suffix = String(score)
         return Text(prefix + suffix)
     }
     
