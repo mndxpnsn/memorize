@@ -19,7 +19,7 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
         numberOfCards = 2 * numberOfPairsOfCards
         score = 0
 
-        let randArray = get_unique_random_array2(size: numberOfCards)
+        let randArray = get_unique_random_array(size: numberOfCards)
         
         for index in 0..<numberOfCards {
             let index_loc = randArray[index]
@@ -29,20 +29,10 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
         }
     }
     
-    func get_unique_random_array2(size: Int) -> Array<Int> {
+    func get_unique_random_array(size: Int) -> Array<Int> {
         var set = Set<Int>()
         while set.count < size {
             set.insert(Int.random(in: 0..<size))
-        }
-        let randArray = Array(set)
-        
-        return randArray
-    }
-    
-    func get_unique_random_array(tot_num_cards: Int, num_cards: Int) -> Array<Int> {
-        var set = Set<Int>()
-        while set.count < num_cards {
-            set.insert(Int.random(in: 0..<tot_num_cards))
         }
         let randArray = Array(set)
         
@@ -98,7 +88,7 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
         cards = Array<Card>()
         numberOfCards = num_cards
         
-        let randArray = get_unique_random_array2(size: num_cards)
+        let randArray = get_unique_random_array(size: num_cards)
         
         for index in 0..<num_cards {
             let index_loc = randArray[index]
@@ -115,8 +105,7 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
         
         new_cards(num_cards: num_cards, createCardContent: cardContent)
         
-        let randArray = get_unique_random_array2(size: numberOfCards)
-        print(randArray)
+        let randArray = get_unique_random_array(size: num_cards)
         for index in 0..<num_cards {
             let index_loc = randArray[index]
             cards[index].isFaceUp = false
@@ -124,7 +113,6 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
             cards[index].isSeen = false
             cards[index].content = cardContent(Int(index_loc) / 2)
         }
-        print("step2")
         indexOfTheOneAndOnlyFaceUpCard = nil
     }
     

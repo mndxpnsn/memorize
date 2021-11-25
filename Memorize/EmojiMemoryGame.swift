@@ -99,11 +99,7 @@ class EmojiMemoryGame: ObservableObject {
     
     func new_game() {
         let theme_count = emoji_themes.count
-        print("theme count")
         theme = Int.random(in: 0..<theme_count)
-        print("theme")
-        print(theme)
-        print(emoji_themes[theme].count)
         model.new_game(num_cards: emoji_themes[theme].count * 2, cardContent: { index in
             return emoji_themes[theme][index]
         })
