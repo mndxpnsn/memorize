@@ -2,7 +2,7 @@
 //  EmojiMemoryGame.swift
 //  Memorize
 //  This is the view model
-//  Created by Derek Harrison on 20/11/2021.
+//  Created by mndx on 20/11/2021.
 //
 
 //import Foundation

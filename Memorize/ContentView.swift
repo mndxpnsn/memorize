@@ -2,7 +2,7 @@
 //  ContentView.swift
 //  Memorize
 //
-//  Created by Derek Harrison on 18/11/2021.
+//  Created by mndx on 18/11/2021.
 //
 
 import SwiftUI
