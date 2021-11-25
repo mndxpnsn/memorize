@@ -14,6 +14,7 @@ class EmojiMemoryGame: ObservableObject {
     static var emoji_themes: [[String]] = [[String]]()
     static var theme_colors: Array<Color> = Array<Color>()
     static var theme: Int = 0
+    static var init_set = false
     
     static let emojis_theme1 = ["🚂", "🚀", "🚁", "🚜"]
     static let emojis_theme2 = ["🚗", "🚄", "🛵", "🚅"]
@@ -21,7 +22,6 @@ class EmojiMemoryGame: ObservableObject {
     static let emojis_theme4 = ["📡", "💿", "⛓", "🧲"]
     static let emojis_theme5 = ["🛠", "⚙️", "🔫", "🗡"]
     static let emojis_theme6 = ["🏅", "🥜", "🥠", "🎂"]
-    static var init_set = false
     
     static func set_emoji_themes() {
         add_theme(emojis: emojis_theme1, num_pairs: numberOfPairsOfCardsGlb, color: Color.red)
