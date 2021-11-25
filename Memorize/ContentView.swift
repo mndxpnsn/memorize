@@ -11,6 +11,7 @@ struct ContentView: View {
     @ObservedObject var viewModel: EmojiMemoryGame
     
     var body: some View {
+        let color = get_theme_color()
         VStack {
             theme_title()
             ScrollView {
@@ -24,7 +25,7 @@ struct ContentView: View {
                     })
                 }
             }
-            .foregroundColor(.red)
+            .foregroundColor(color)
             .padding(.horizontal)
 
             Button(action: myAction, label: myLabel)
@@ -32,10 +33,14 @@ struct ContentView: View {
     }
     
     func theme_title() -> Text {
-        let theme = viewModel.get_theme()
+        let theme = viewModel.get_theme() + 1
         let prefix = "Theme: "
         let suffix = String(theme)
         return Text(prefix + suffix)
+    }
+    
+    func get_theme_color() -> Color {
+        return viewModel.get_theme_color()
     }
     
     func myAction () -> Void {
@@ -51,6 +56,7 @@ struct CardView: View {
     let card: MemoryGame<String>.Card
     
     var body: some View {
+        
         ZStack {
             let shape = RoundedRectangle(cornerRadius: 20)
             if card.isFaceUp {
@@ -63,7 +69,7 @@ struct CardView: View {
             }
             else {
                 shape.fill()
-                shape.stroke(lineWidth: 3)
+                shape.strokeBorder(lineWidth: 3)
             }
         }
     }
