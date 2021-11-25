@@ -18,11 +18,24 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
         cards = Array<Card>()
         numberOfCards = 2 * numberOfPairsOfCards
 
-        for pairIndex in 0..<numberOfPairsOfCards {
+        let randArray = get_unique_random_array()
+        
+        for index in 0..<numberOfCards {
+            let index_loc = randArray[index]
+            let pairIndex = index_loc / 2
             let content: CardContent = createCardContent(pairIndex)
-            cards.append(Card(content: content, id: pairIndex * 2))
-            cards.append(Card(content: content, id: pairIndex * 2 + 1))
+            cards.append(Card(content: content, id: index))
         }
+    }
+    
+    func get_unique_random_array() -> Array<Int> {
+        var set = Set<Int>()
+        while set.count < numberOfCards {
+            set.insert(Int.random(in: 0..<numberOfCards))
+        }
+        let randArray = Array(set)
+        
+        return randArray
     }
     
     mutating func choose(_ card: Card) {
@@ -56,10 +69,14 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
     }
     
     mutating func new_game(num_cards: Int, cardContent: (Int) -> CardContent) {
+
+        let randArray = get_unique_random_array()
+        
         for index in 0..<num_cards {
+            let index_loc = randArray[index]
             cards[index].isFaceUp = false
             cards[index].isMatched = false
-            cards[index].content = cardContent(Int(index) / 2)
+            cards[index].content = cardContent(Int(index_loc) / 2)
         }
         indexOfTheOneAndOnlyFaceUpCard = nil
     }
