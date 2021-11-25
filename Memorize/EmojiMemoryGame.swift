@@ -8,12 +8,12 @@
 //import Foundation
 import SwiftUI
 
-let numberOfPairsOfCardsGlb = 4
-var emoji_themes: [[String]] = [[String]]()
-var theme_colors: Array<Color> = Array<Color>()
-var theme: Int = 0
-
 class EmojiMemoryGame: ObservableObject {
+    
+    static let numberOfPairsOfCardsGlb = 4
+    static var emoji_themes: [[String]] = [[String]]()
+    static var theme_colors: Array<Color> = Array<Color>()
+    static var theme: Int = 0
     
     static let emojis_theme1 = ["🚂", "🚀", "🚁", "🚜"]
     static let emojis_theme2 = ["🚗", "🚄", "🛵", "🚅"]
@@ -93,19 +93,20 @@ class EmojiMemoryGame: ObservableObject {
     }
     
     func new_game() {
-        let theme_count = emoji_themes.count
-        theme = Int.random(in: 0..<theme_count)
-        model.new_game(num_cards: emoji_themes[theme].count * 2, cardContent: { index in
-            return emoji_themes[theme][index]
-        })
+        let theme_count = EmojiMemoryGame.emoji_themes.count
+        EmojiMemoryGame.theme = Int.random(in: 0..<theme_count)
+        model.new_game(num_cards: EmojiMemoryGame.emoji_themes[EmojiMemoryGame.theme].count * 2) {
+            index in
+            return EmojiMemoryGame.emoji_themes[EmojiMemoryGame.theme][index]
+        }
     }
     
     func get_theme() -> Int {
-        return theme
+        return EmojiMemoryGame.theme
     }
     
     func get_theme_color() -> Color {
-        return theme_colors[theme]
+        return EmojiMemoryGame.theme_colors[EmojiMemoryGame.theme]
     }
     
     func get_score() -> Int {
