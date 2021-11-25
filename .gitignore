@@ -1,6 +1,6 @@
 .DS_Store
 Memorize.xcodeproj/
+*xcuserstate
+*.xcodeproj/
 Memorize/Assets.xcassets/
 Memorize/Preview Content/
-./*sets/
-./*tent/
